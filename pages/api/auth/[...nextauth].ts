@@ -1,15 +1,16 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth from 'next-auth';
+import * as dotenv from 'dotenv';
+import GoogleProvider from 'next-auth/providers/google';
+
+dotenv.config();
 
 export const authOptions = {
-  // Configure one or more authentication providers
   providers: [
-    // !!! Should be stored in .env file.
     GoogleProvider({
-      clientId: `477775060025-dtg8bbi9fi2ff3o95b25gog1hlik9i6b.apps.googleusercontent.com`,
-      clientSecret: `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`,
+      clientId: process.env.GOOGLE_CLIENT_ID ?? '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
     }),
   ],
-  secret: `UItTuD1HcGXIj8ZfHUswhYdNd40Lc325R8VlxQPUoR0=`,
+  secret: process.env.GOOGLE_SECRET,
 };
 export default NextAuth(authOptions);
