@@ -1,11 +1,12 @@
-import { MuiListInferencer } from "@refinedev/inferencer/mui";
-import { GetServerSideProps } from "next";
+import { MuiListInferencer } from '@refinedev/inferencer/mui';
+import { GetServerSideProps } from 'next';
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]';
+import { ReviewList } from '@components/ReviewList';
 
 export default function CategoryList() {
-  return <MuiListInferencer />;
+  return <ReviewList />;
 }
 
 export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
@@ -15,7 +16,7 @@ export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
     return {
       props: {},
       redirect: {
-        destination: `/login?to=${encodeURIComponent("/categories")}`,
+        destination: `/login?to=${encodeURIComponent('/categories')}`,
         permanent: false,
       },
     };

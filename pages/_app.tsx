@@ -7,7 +7,7 @@ import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React from 'react';
-
+import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined, Dashboard } from '@mui/icons-material';
 import { Header } from '@components/header';
 import { ColorModeContextProvider } from '@contexts';
 import { CssBaseline, GlobalStyles } from '@mui/material';
@@ -101,13 +101,72 @@ const App = (props: React.PropsWithChildren) => {
               authProvider={authProvider}
               resources={[
                 {
-                  name: 'blog_posts',
-                  list: '/blog-posts',
+                  name: 'dashboard',
+                  list: '/home',
+                  meta: {
+                    label: 'Dashboard',
+                    canDelete: true,
+                    icon: <Dashboard />,
+                  },
+                },
+                {
+                  name: 'properties',
+                  list: '/properties/all',
                   create: '/blog-posts/create',
                   edit: '/blog-posts/edit/:id',
                   show: '/blog-posts/show/:id',
                   meta: {
+                    label: 'Properties',
                     canDelete: true,
+                    icon: <VillaOutlined />,
+                  },
+                },
+                {
+                  name: 'agents',
+                  list: '/agent',
+                  create: '/categories/create',
+                  edit: '/categories/edit/:id',
+                  show: '/categories/show/:id',
+                  meta: {
+                    label: 'Agents',
+                    canDelete: true,
+                    icon: <PeopleAltOutlined />,
+                  },
+                },
+                {
+                  name: 'reviews',
+                  list: '/categories',
+                  create: '/categories/create',
+                  edit: '/categories/edit/:id',
+                  show: '/categories/show/:id',
+                  meta: {
+                    label: 'Reviews',
+                    canDelete: true,
+                    icon: <StarOutlineRounded />,
+                  },
+                },
+                {
+                  name: 'messages',
+                  list: '/categories',
+                  create: '/categories/create',
+                  edit: '/categories/edit/:id',
+                  show: '/categories/show/:id',
+                  meta: {
+                    label: 'Messages',
+                    canDelete: true,
+                    icon: <ChatBubbleOutline />,
+                  },
+                },
+                {
+                  name: 'profile',
+                  list: '/profile',
+                  create: '/categories/create',
+                  edit: '/categories/edit/:id',
+                  show: '/categories/show/:id',
+                  meta: {
+                    label: 'My profile',
+                    canDelete: true,
+                    icon: <AccountCircleOutlined />,
                   },
                 },
                 {
@@ -117,7 +176,9 @@ const App = (props: React.PropsWithChildren) => {
                   edit: '/categories/edit/:id',
                   show: '/categories/show/:id',
                   meta: {
+                    label: 'categories',
                     canDelete: true,
+                    icon: <AccountCircleOutlined />,
                   },
                 },
               ]}
