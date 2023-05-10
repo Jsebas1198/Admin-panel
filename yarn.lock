@@ -803,7 +803,23 @@
     temp "^0.9.4"
     tslib "^2.3.1"
 
-"@refinedev/core@^4.1.2", "@refinedev/core@^4.5.4", "@refinedev/core@^4.5.8":
+"@refinedev/core@4.14.3":
+  version "4.14.3"
+  resolved "https://registry.yarnpkg.com/@refinedev/core/-/core-4.14.3.tgz#f39f7bb0c2cd056f093b54b11c1ae0502f9f3656"
+  integrity sha512-bUnfk+UDBtlj83rXgtEpt+8J8d7OaF/T6Tdx/5JX59holDnkdft2D0xek0bRHNJyM3aRtyWov0tNICkRuAeRzQ==
+  dependencies:
+    "@tanstack/react-query" "^4.10.1"
+    "@tanstack/react-query-devtools" "^4.10.1"
+    export-to-csv-fix-source-map "^0.2.1"
+    lodash "^4.17.21"
+    lodash-es "^4.17.21"
+    papaparse "^5.3.0"
+    pluralize "^8.0.0"
+    qs "^6.10.1"
+    tslib "^2.3.1"
+    warn-once "^0.1.0"
+
+"@refinedev/core@^4.1.2", "@refinedev/core@^4.5.4":
   version "4.14.0"
   resolved "https://registry.yarnpkg.com/@refinedev/core/-/core-4.14.0.tgz#6a81d13fce8e15f8cc170e9a320684667c4de7b3"
   integrity sha512-LEKMAWWbjGte7ZYiPDI1MTq4gE0VDfCsgMDZbG3f3+bPkqFPo7mDUH2bzAtL+wr6EqoknxbDEYywKxrzgW73qg==
@@ -819,10 +835,10 @@
     tslib "^2.3.1"
     warn-once "^0.1.0"
 
-"@refinedev/inferencer@^3.1.4":
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/@refinedev/inferencer/-/inferencer-3.3.2.tgz#1cc608f6a5a945327a31b8887567a8e86d568823"
-  integrity sha512-g9dvXl5oQazpkAwXeU+2x+TwOEG5Hblj8RlStLnrRN+7owiDuh7K/eWsFUGcIajm4TBLDf4r6xvTWm8il4vjbg==
+"@refinedev/inferencer@3.3.4":
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/@refinedev/inferencer/-/inferencer-3.3.4.tgz#5f8e6aab385aa54039d5132c8b27a82a7d3ae0b4"
+  integrity sha512-r3jDymRBek58SK33NabcS56JMPWhl0NuWc3GVBSPNRzmnYwv5a5ygAwd05j2H8Wdt4Vfc2EksC9FtINvuEO7pA==
   dependencies:
     "@aliemir/react-live" "^4.0.0"
     "@refinedev/core" "^4.1.2"
@@ -844,10 +860,10 @@
   dependencies:
     kbar "^0.1.0-beta.36"
 
-"@refinedev/mui@^4.10.0":
-  version "4.14.2"
-  resolved "https://registry.yarnpkg.com/@refinedev/mui/-/mui-4.14.2.tgz#3add01b305c7fd1c82129f6d95d3bb1eb85bfbef"
-  integrity sha512-BSVuwChkeB2gkflrGSQDOMXT5fVyi/wlBus2Om40mUokqhv1VWCXtAKEeF9eApmbl6HD0JRXOBWIMa7ylaTqfw==
+"@refinedev/mui@4.14.7":
+  version "4.14.7"
+  resolved "https://registry.yarnpkg.com/@refinedev/mui/-/mui-4.14.7.tgz#74a3aeb3cc3c3c7d0e7ae82a42b423c435a9c808"
+  integrity sha512-JA++GdeaQkKSI0vqjKGy25A7bimcF+jlcNYsyr4AzN6vLKHAaTIwulC1AN0xIbTdrpKcQYT6AfNVerCtjDlJBg==
   dependencies:
     "@emotion/react" "^11.8.2"
     "@emotion/styled" "^11.8.1"
@@ -856,7 +872,7 @@
     "@mui/material" "^5.8.6"
     "@mui/x-data-grid" "^5.12.1"
     "@refinedev/react-hook-form" "^4.2.2"
-    "@refinedev/ui-types" "^1.12.0"
+    "@refinedev/ui-types" "^1.14.0"
     dayjs "^1.10.7"
     lodash "^4.17.21"
     lodash-es "^4.17.21"
@@ -890,10 +906,10 @@
     axios "^0.26.1"
     query-string "^7.1.1"
 
-"@refinedev/ui-types@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@refinedev/ui-types/-/ui-types-1.12.0.tgz#051186b9200005223c66e3e034e477109f12e066"
-  integrity sha512-KRXvbtigZ5GAT1TL10g74eP15NDJYamjHonOxobsL67x6VrvC8ZXKr1bqYyNONqIG5uVqGdV0TZzTNeZiVq2qg==
+"@refinedev/ui-types@^1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@refinedev/ui-types/-/ui-types-1.14.0.tgz#f26e6d6cba34c27e7cd785c02723bb467bcdca78"
+  integrity sha512-aQQZrVfQJmjO0t8+dmRaZNALNfKDJgDGJxnFMZXByCvPK4UnFPvc0IVoXwi+LIHoB6+VOVU+gUi8XWdJ125Swg==
   dependencies:
     "@refinedev/core" "^4.5.4"
     dayjs "^1.10.7"

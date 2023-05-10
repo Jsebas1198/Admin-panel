@@ -1,21 +1,52 @@
-import { AuthBindings, Refine } from '@refinedev/core';
-import { RefineKbar, RefineKbarProvider } from '@refinedev/kbar';
-import { RefineSnackbarProvider, ThemedLayoutV2, notificationProvider } from '@refinedev/mui';
-import routerProvider, { UnsavedChangesNotifier } from '@refinedev/nextjs-router';
+import {
+  AuthBindings,
+  Refine,
+} from '@refinedev/core';
+import {
+  RefineKbar,
+  RefineKbarProvider,
+} from '@refinedev/kbar';
+import {
+  RefineSnackbarProvider,
+  ThemedLayoutV2,
+  notificationProvider,
+} from '@refinedev/mui';
+import routerProvider, {
+  UnsavedChangesNotifier,
+} from '@refinedev/nextjs-router';
 import type { NextPage } from 'next';
-import { SessionProvider, signIn, signOut, useSession } from 'next-auth/react';
+import {
+  SessionProvider,
+  signIn,
+  signOut,
+  useSession,
+} from 'next-auth/react';
 import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import React from 'react';
-import { AccountCircleOutlined, ChatBubbleOutline, PeopleAltOutlined, StarOutlineRounded, VillaOutlined, Dashboard } from '@mui/icons-material';
+import {
+  AccountCircleOutlined,
+  ChatBubbleOutline,
+  PeopleAltOutlined,
+  StarOutlineRounded,
+  VillaOutlined,
+  Dashboard,
+} from '@mui/icons-material';
 import { Header } from '@components/header';
 import { ColorModeContextProvider } from '@contexts';
-import { CssBaseline, GlobalStyles } from '@mui/material';
+import {
+  CssBaseline,
+  GlobalStyles,
+} from '@mui/material';
 import dataProvider from '@refinedev/simple-rest';
 
-const API_URL = 'https://api.fake-rest.refine.dev';
+const API_URL =
+  'https://api.fake-rest.refine.dev';
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<
+  P = {},
+  IP = P
+> = NextPage<P, IP> & {
   noLayout?: boolean;
 };
 
@@ -92,12 +123,20 @@ const App = (props: React.PropsWithChildren) => {
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
-          <GlobalStyles styles={{ html: { WebkitFontSmoothing: 'auto' } }} />
+          <GlobalStyles
+            styles={{
+              html: {
+                WebkitFontSmoothing: 'auto',
+              },
+            }}
+          />
           <RefineSnackbarProvider>
             <Refine
               routerProvider={routerProvider}
               dataProvider={dataProvider(API_URL)}
-              notificationProvider={notificationProvider}
+              notificationProvider={
+                notificationProvider
+              }
               authProvider={authProvider}
               resources={[
                 {
@@ -112,9 +151,9 @@ const App = (props: React.PropsWithChildren) => {
                 {
                   name: 'properties',
                   list: '/properties/all',
-                  create: '/blog-posts/create',
-                  edit: '/blog-posts/edit/:id',
-                  show: '/blog-posts/show/:id',
+                  create: '/properties/create',
+                  edit: '/properties/edit/:id',
+                  show: '/properties/detail/:id',
                   meta: {
                     label: 'Properties',
                     canDelete: true,
@@ -124,9 +163,7 @@ const App = (props: React.PropsWithChildren) => {
                 {
                   name: 'agents',
                   list: '/agent',
-                  create: '/categories/create',
-                  edit: '/categories/edit/:id',
-                  show: '/categories/show/:id',
+                  show: '/agent/agent-profile/:id',
                   meta: {
                     label: 'Agents',
                     canDelete: true,
@@ -135,10 +172,7 @@ const App = (props: React.PropsWithChildren) => {
                 },
                 {
                   name: 'reviews',
-                  list: '/categories',
-                  create: '/categories/create',
-                  edit: '/categories/edit/:id',
-                  show: '/categories/show/:id',
+                  list: '/home',
                   meta: {
                     label: 'Reviews',
                     canDelete: true,
@@ -147,10 +181,7 @@ const App = (props: React.PropsWithChildren) => {
                 },
                 {
                   name: 'messages',
-                  list: '/categories',
-                  create: '/categories/create',
-                  edit: '/categories/edit/:id',
-                  show: '/categories/show/:id',
+                  list: '/home',
                   meta: {
                     label: 'Messages',
                     canDelete: true,
@@ -160,13 +191,12 @@ const App = (props: React.PropsWithChildren) => {
                 {
                   name: 'profile',
                   list: '/profile',
-                  create: '/categories/create',
-                  edit: '/categories/edit/:id',
-                  show: '/categories/show/:id',
                   meta: {
                     label: 'My profile',
                     canDelete: true,
-                    icon: <AccountCircleOutlined />,
+                    icon: (
+                      <AccountCircleOutlined />
+                    ),
                   },
                 },
                 {
@@ -178,7 +208,9 @@ const App = (props: React.PropsWithChildren) => {
                   meta: {
                     label: 'categories',
                     canDelete: true,
-                    icon: <AccountCircleOutlined />,
+                    icon: (
+                      <AccountCircleOutlined />
+                    ),
                   },
                 },
               ]}
@@ -198,14 +230,19 @@ const App = (props: React.PropsWithChildren) => {
   );
 };
 
-function MyApp({ Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout): JSX.Element {
+function MyApp({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppPropsWithLayout): JSX.Element {
   const renderComponent = () => {
     if (Component.noLayout) {
       return <Component {...pageProps} />;
     }
 
     return (
-      <ThemedLayoutV2 Header={() => <Header isSticky={true} />}>
+      <ThemedLayoutV2
+        Header={() => <Header isSticky={true} />}
+      >
         <Component {...pageProps} />
       </ThemedLayoutV2>
     );

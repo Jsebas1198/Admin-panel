@@ -5,7 +5,12 @@ import {
   Stack,
 } from '@mui/material';
 import { PieChartProps } from 'src/interfaces/home';
-import ReactApexChart from 'react-apexcharts';
+// import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
+const ReactApexChart = dynamic(
+  () => import('react-apexcharts'),
+  { ssr: false }
+);
 const PieChart = ({
   title,
   value,

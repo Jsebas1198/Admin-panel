@@ -5,7 +5,12 @@ import {
   Stack,
 } from '@mui/material';
 import { PieChartProps } from 'src/interfaces/home';
-import ReactApexChart from 'react-apexcharts';
+// import ReactApexChart from 'react-apexcharts';
+import dynamic from 'next/dynamic';
+const ReactApexChart = dynamic(
+  () => import('react-apexcharts'),
+  { ssr: false }
+);
 import { ArrowCircleUpRounded } from '@mui/icons-material';
 import {
   TotalRevenueOptions,
@@ -30,7 +35,7 @@ const TotalRevenue = () => {
         Total Revenue
       </Typography>
       <Stack
-        my={20}
+        my="20px"
         direction="row"
         gap={4}
         flexWrap="wrap"
@@ -42,7 +47,11 @@ const TotalRevenue = () => {
         >
           $236, 535
         </Typography>
-        <Stack>
+        <Stack
+          direction="row"
+          alignItems="center"
+          gap={1}
+        >
           <ArrowCircleUpRounded
             sx={{
               fontSize: 25,
@@ -57,7 +66,7 @@ const TotalRevenue = () => {
               0.8%
             </Typography>
             <Typography
-              fontSize={15}
+              fontSize={12}
               color="#808191"
             >
               Than last month
@@ -65,6 +74,12 @@ const TotalRevenue = () => {
           </Stack>
         </Stack>
       </Stack>
+      <ReactApexChart
+        series={TotalRevenueSeries}
+        type="bar"
+        height={310}
+        options={TotalRevenueOptions}
+      />
     </Box>
   );
 };
