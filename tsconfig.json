@@ -42,7 +42,13 @@
       ],
       "@public": [
         "public"
-      ]
+      ],
+      "@interfaces/*": [
+        "src/interfaces/*"
+      ],
+      "@interfaces": [
+        "src/interfaces"
+      ],
     },
     "incremental": true
   },
