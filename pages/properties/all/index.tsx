@@ -1,5 +1,5 @@
 import React from 'react';
-import { useList } from '@refinedev/core';
+import { useTable } from '@refinedev/core';
 import { Add } from '@mui/icons-material';
 import {
   Typography,
@@ -15,6 +15,21 @@ import {
 } from '@components/index';
 
 const AllProperties = () => {
+  const {
+    tableQueryResult: {
+      data,
+      isLoading,
+      isError,
+    },
+  } = useTable();
+
+  const allProperties = data?.data ?? [];
+
+  if (isLoading)
+    return <Typography>Loading...</Typography>;
+
+  if (isError)
+    return <Typography>Error...</Typography>;
   return (
     <Box>
       <Stack
@@ -39,6 +54,25 @@ const AllProperties = () => {
           ></CustomButton>
         </Link>
       </Stack>
+      <Box
+        mt="20px"
+        sx={{
+          display: 'felx',
+          flexWrap: 'wrap',
+          gap: 3,
+        }}
+      >
+        {allProperties.map((property) => (
+          <PropertyCard
+            key={property._id}
+            id={property._id}
+            title={property.title}
+            price={property.price}
+            location={property.location}
+            photo={property.photo}
+          />
+        ))}
+      </Box>
     </Box>
   );
 };

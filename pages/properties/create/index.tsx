@@ -43,14 +43,17 @@ const CreateProperty = () => {
   const onFinishHandler = async (
     data: FormValues
   ) => {
-    if (!propertyImage.name)
+    if (!propertyImage.name) {
       return alert('Please select an image');
+    }
 
-    await onFinish({
+    const formData = {
       ...data,
       photo: propertyImage.url,
       email: user.email,
-    });
+    };
+
+    await onFinish(formData);
   };
 
   return (

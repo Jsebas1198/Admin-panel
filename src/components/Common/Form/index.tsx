@@ -66,7 +66,7 @@ const Form = ({
               color="info"
               variant="outlined"
               {...register('title', {
-                require: true,
+                required: true,
               })}
             />
           </FormControl>
@@ -95,8 +95,8 @@ const Form = ({
                 padding: 10,
                 color: '#919191',
               }}
-              {...register('title', {
-                require: true,
+              {...register('description', {
+                required: true,
               })}
             />
           </FormControl>
@@ -123,7 +123,7 @@ const Form = ({
                 }}
                 defaultValue="apartment"
                 {...register('propertyType', {
-                  require: true,
+                  required: true,
                 })}
               >
                 <MenuItem value="apartments">
@@ -171,7 +171,7 @@ const Form = ({
                 type="number"
                 variant="outlined"
                 {...register('price', {
-                  require: true,
+                  required: true,
                 })}
               />
             </FormControl>
@@ -194,7 +194,7 @@ const Form = ({
               color="info"
               variant="outlined"
               {...register('location', {
-                require: true,
+                required: true,
               })}
             />
           </FormControl>

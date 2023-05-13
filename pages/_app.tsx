@@ -40,8 +40,9 @@ import {
 } from '@mui/material';
 import dataProvider from '@refinedev/simple-rest';
 
-const API_URL =
-  'https://api.fake-rest.refine.dev';
+// const API_URL =
+//   'https://api.fake-rest.refine.dev';
+const API_URL = 'http://localhost:8080/api/v1';
 
 export type NextPageWithLayout<
   P = {},
@@ -66,7 +67,7 @@ const App = (props: React.PropsWithChildren) => {
   const authProvider: AuthBindings = {
     login: async () => {
       signIn('google', {
-        callbackUrl: to ? to.toString() : '/',
+        callbackUrl: to ? to.toString() : '/home',
         redirect: true,
       });
 
@@ -79,7 +80,7 @@ const App = (props: React.PropsWithChildren) => {
         redirect: true,
         callbackUrl: '/login',
       });
-
+      localStorage.removeItem('user');
       return {
         success: true,
       };
@@ -97,7 +98,6 @@ const App = (props: React.PropsWithChildren) => {
           redirectTo: '/login',
         };
       }
-
       return {
         authenticated: true,
       };
@@ -108,8 +108,38 @@ const App = (props: React.PropsWithChildren) => {
     getIdentity: async () => {
       if (data?.user) {
         const { user } = data;
+
+        //prueba  de insercion de datos
+        const response = await fetch(
+          'http://localhost:8080/api/v1/users',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: user.name,
+              email: user.email,
+              avatar: user.image,
+            }),
+          }
+        );
+
+        const actualuser = await response.json();
+
+        if (response.status === 200) {
+          localStorage.setItem(
+            'user',
+            JSON.stringify(actualuser)
+          );
+        } else {
+          return Promise.reject(
+            'Failed to create user'
+          );
+        }
         return {
           name: user.name,
+          email: user.email,
           avatar: user.image,
         };
       }
