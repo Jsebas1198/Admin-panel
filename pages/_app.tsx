@@ -40,6 +40,8 @@ import {
 } from '@mui/material';
 import dataProvider from '@refinedev/simple-rest';
 
+import '@styles/global.css';
+
 // const API_URL =
 //   'https://api.fake-rest.refine.dev';
 const API_URL = 'http://localhost:8080/api/v1';

@@ -126,28 +126,28 @@ const Form = ({
                   required: true,
                 })}
               >
-                <MenuItem value="apartments">
+                <MenuItem value="Apartments">
                   Apartment
                 </MenuItem>
                 <MenuItem value="villa">
                   Villa
                 </MenuItem>
-                <MenuItem value="farmHouse">
+                <MenuItem value="FarmHouse">
                   Farm house
                 </MenuItem>
-                <MenuItem value="condos">
+                <MenuItem value="Condos">
                   Condos
                 </MenuItem>
-                <MenuItem value="townHouse">
+                <MenuItem value="TownHouse">
                   Town House
                 </MenuItem>
-                <MenuItem value="duplex">
+                <MenuItem value="Duplex">
                   Duplex
                 </MenuItem>
-                <MenuItem value="studio">
+                <MenuItem value="Studio">
                   Studio
                 </MenuItem>
-                <MenuItem value="chalet">
+                <MenuItem value="Chalet">
                   Chalet
                 </MenuItem>
               </Select>
