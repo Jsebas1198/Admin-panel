@@ -140,6 +140,7 @@ const App = (props: React.PropsWithChildren) => {
           );
         }
         return {
+          userId: actualuser._id,
           name: user.name,
           email: user.email,
           avatar: user.image,
@@ -194,8 +195,8 @@ const App = (props: React.PropsWithChildren) => {
                 },
                 {
                   name: 'agents',
-                  list: '/agent',
-                  show: '/agent/agent-profile/:id',
+                  list: '/agents/all',
+                  show: '/agents/show/:id',
                   meta: {
                     label: 'Agents',
                     canDelete: true,

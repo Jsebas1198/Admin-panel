@@ -1,11 +1,16 @@
-import { Box, Button, Container, Typography } from "@mui/material";
-import { useLogin } from "@refinedev/core";
-import { ThemedTitleV2 } from "@refinedev/mui";
+import {
+  Box,
+  Button,
+  Container,
+  Typography,
+} from '@mui/material';
+import { useLogin } from '@refinedev/core';
+import { ThemedTitleV2 } from '@refinedev/mui';
 
-import { GetServerSideProps } from "next";
+import { GetServerSideProps } from 'next';
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]';
 
 export default function Login() {
   const { mutate: login } = useLogin();
@@ -13,10 +18,10 @@ export default function Login() {
   return (
     <Container
       style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
       }}
     >
       <Box
@@ -28,23 +33,27 @@ export default function Login() {
         <ThemedTitleV2
           collapsed={false}
           wrapperStyles={{
-            fontSize: "22px",
-            justifyContent: "center",
+            fontSize: '22px',
+            justifyContent: 'center',
           }}
         />
 
         <Button
-          style={{ width: "240px" }}
+          style={{ width: '240px' }}
           variant="contained"
           size="large"
           onClick={() => login({})}
         >
           Sign in
         </Button>
-        <Typography align="center" color={"text.secondary"} fontSize="12px">
+        <Typography
+          align="center"
+          color={'text.secondary'}
+          fontSize="12px"
+        >
           Powered by
           <img
-            style={{ padding: "0 5px" }}
+            style={{ padding: '0 5px' }}
             alt="Google"
             src="https://refine.ams3.cdn.digitaloceanspaces.com/superplate-auth-icons%2Fgoogle.svg"
           />
@@ -57,20 +66,25 @@ export default function Login() {
 
 Login.noLayout = true;
 
-export const getServerSideProps: GetServerSideProps<{}> = async (context) => {
-  const session = await getServerSession(context.req, context.res, authOptions);
+export const getServerSideProps: GetServerSideProps<{}> =
+  async (context) => {
+    const session = await getServerSession(
+      context.req,
+      context.res,
+      authOptions
+    );
 
-  if (session) {
+    if (session) {
+      return {
+        props: {},
+        redirect: {
+          destination: '/',
+          permanent: false,
+        },
+      };
+    }
+
     return {
       props: {},
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
     };
-  }
-
-  return {
-    props: {},
   };
-};

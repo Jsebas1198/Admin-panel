@@ -47,6 +47,7 @@ const PropertyDetail = () => {
     user.email === propertyDetail.creator.email;
 
   const handleDeleteProperty = (id: string) => {
+    console.log('se presiona con  id:', id);
     const response = confirm(
       'Are you sure you want to delete this property?'
     );
@@ -59,14 +60,14 @@ const PropertyDetail = () => {
         },
         {
           onSuccess: () => {
-            router.push('/properties');
+            router.push('/properties/all');
           },
         }
       );
     }
   };
 
-  console.log(propertyDetail.creator.email);
+
   return (
     <Box
       borderRadius="15px"
@@ -357,7 +358,17 @@ const PropertyDetail = () => {
               />
             </Stack>
           </Stack>
-
+          <Stack>
+            <img
+              src="https://serpmedia.org/scigen/images/googlemaps-nyc-standard.png?crc=3787557525"
+              width="100%"
+              height={306}
+              style={{
+                borderRadius: 10,
+                objectFit: 'cover',
+              }}
+            />
+          </Stack>
           <Box>
             <CustomButton
               title={'Book Now'}

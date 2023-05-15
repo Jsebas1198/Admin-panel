@@ -9,6 +9,7 @@ const CustomButton = ({
   fullWidth,
   icon,
   disabled,
+  handleClick,
 }: CustomButtonProps) => {
   return (
     <Button
@@ -32,6 +33,7 @@ const CustomButton = ({
           backgroundColor,
         },
       }}
+      onClick={handleClick}
     >
       {icon}
       {title}
