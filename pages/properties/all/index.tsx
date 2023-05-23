@@ -15,6 +15,7 @@ import {
   CustomButton,
   PropertyCard,
 } from '@components/index';
+import { IProperty } from '@interfaces/property';
 
 const AllProperties = () => {
   const {
@@ -33,7 +34,8 @@ const AllProperties = () => {
     setFilters,
   } = useTable();
 
-  const allProperties = data?.data ?? [];
+  const allProperties =
+    (data?.data as IProperty[]) ?? [];
 
   //Get the order of the rice property
   const currentPrice = sorters.find(
@@ -269,7 +271,13 @@ const AllProperties = () => {
               'aria-label': 'Without label',
             }}
             defaultValue={10}
-            onChange={(e) => {setPageSize(e.target.value ? Number(e.target.value) : 10)}}
+            onChange={(e) => {
+              setPageSize(
+                e.target.value
+                  ? Number(e.target.value)
+                  : 10
+              );
+            }}
           >
             {[10, 20, 30, 40, 50].map((size) => (
               <MenuItem key={size} value={size}>

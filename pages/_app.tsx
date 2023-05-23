@@ -44,7 +44,10 @@ import '@styles/global.css';
 
 // const API_URL =
 //   'https://api.fake-rest.refine.dev';
-const API_URL = 'http://localhost:8080/api/v1';
+
+// const API_URL = 'http://localhost:8080/api/v1';
+
+const API_URL = 'http://localhost:4000';
 
 export type NextPageWithLayout<
   P = {},
@@ -112,8 +115,11 @@ const App = (props: React.PropsWithChildren) => {
         const { user } = data;
 
         //prueba  de insercion de datos
+
         const response = await fetch(
-          'http://localhost:8080/api/v1/users',
+          // 'http://localhost:8080/api/v1/users',
+
+          'http://localhost:4000/users',
           {
             method: 'POST',
             headers: {
@@ -129,7 +135,7 @@ const App = (props: React.PropsWithChildren) => {
 
         const actualuser = await response.json();
 
-        if (response.status === 200) {
+        if (response.status === 202) {
           localStorage.setItem(
             'user',
             JSON.stringify(actualuser)
@@ -139,6 +145,7 @@ const App = (props: React.PropsWithChildren) => {
             'Failed to create user'
           );
         }
+
         return {
           userId: actualuser._id,
           name: user.name,
@@ -226,20 +233,6 @@ const App = (props: React.PropsWithChildren) => {
                   list: '/profile',
                   meta: {
                     label: 'My profile',
-                    canDelete: true,
-                    icon: (
-                      <AccountCircleOutlined />
-                    ),
-                  },
-                },
-                {
-                  name: 'categories',
-                  list: '/categories',
-                  create: '/categories/create',
-                  edit: '/categories/edit/:id',
-                  show: '/categories/show/:id',
-                  meta: {
-                    label: 'categories',
                     canDelete: true,
                     icon: (
                       <AccountCircleOutlined />

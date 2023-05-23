@@ -17,6 +17,7 @@ import {
 } from '@interfaces/agent';
 import Link from 'next/link';
 import Image from 'next/image';
+import { IUser } from '@interfaces/user';
 
 const InfoBar = ({
   icon,
@@ -43,12 +44,10 @@ const AgentCard = ({
   noOfProperties,
 }: AgentCardProp) => {
   const { data: currentUser } =
-    useGetIdentity() as {
-      data: any;
-    };
+    useGetIdentity<IUser>();
 
   const generateLink = () => {
-    if (currentUser.email === email)
+    if (currentUser?.email === email)
       return '/profile';
     return `/agents/show/${id}`;
   };

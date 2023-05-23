@@ -14,7 +14,6 @@ import {
 
 import { useList } from '@refinedev/core';
 const Home = () => {
-  
   const { data, isLoading, isError } = useList({
     resource: 'properties',
     config: {

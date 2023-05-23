@@ -2,12 +2,11 @@ import { useState } from 'react';
 import Form from '@components/Common/Form';
 import { useForm } from '@refinedev/react-hook-form';
 import { useGetIdentity } from '@refinedev/core';
+import { IUser } from '@interfaces/user';
 
 const CreateProperty = () => {
   type FormValues = Record<string, any>;
-  const { data: user } = useGetIdentity() as {
-    data: { email: string };
-  };
+  const { data: user } = useGetIdentity<IUser>();
   const [propertyImage, setPropertyImage] =
     useState({ name: '', url: '' });
   const {
@@ -50,7 +49,7 @@ const CreateProperty = () => {
     const formData = {
       ...data,
       photo: propertyImage.url,
-      email: user.email,
+      email: user?.email,
     };
 
     await onFinish(formData);

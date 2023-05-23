@@ -22,19 +22,20 @@ import {
 } from '@mui/icons-material';
 
 import { CustomButton } from '@components/index';
+import { IUser } from '@interfaces/user';
+import { IProperty } from '@interfaces/property';
 
 const PropertyDetail = () => {
   const router = useRouter();
-  const { data: user } = useGetIdentity() as {
-    data: any;
-  };
+  const { data: user } = useGetIdentity<IUser>();
 
   const { mutate } = useDelete();
   const {
     queryResult: { data, isLoading, isError },
   } = useShow();
 
-  const propertyDetail = data?.data ?? {};
+  const propertyDetails =
+    (data?.data as IProperty) ?? {};
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -44,10 +45,9 @@ const PropertyDetail = () => {
   }
 
   const isCurrentUser =
-    user.email === propertyDetail.creator.email;
+    user?.email === propertyDetails.creator.email;
 
   const handleDeleteProperty = (id: string) => {
-    console.log('se presiona con  id:', id);
     const response = confirm(
       'Are you sure you want to delete this property?'
     );
@@ -66,7 +66,6 @@ const PropertyDetail = () => {
       );
     }
   };
-
 
   return (
     <Box
@@ -94,8 +93,8 @@ const PropertyDetail = () => {
         <Box flex={1} maxWidth={764}>
           <Image
             // className="property_details-img"
-            src={propertyDetail.photo}
-            alt={propertyDetail.title}
+            src={propertyDetails.photo}
+            alt={propertyDetails.title}
             height={546}
             width={764}
             quality={100}
@@ -117,7 +116,7 @@ const PropertyDetail = () => {
                 color="#11142d"
                 textTransform="capitalize"
               >
-                {propertyDetail.propertyType}
+                {propertyDetails.propertyType}
               </Typography>
               <Box>
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -141,7 +140,7 @@ const PropertyDetail = () => {
                   color="#11142d"
                   textTransform="capitalize"
                 >
-                  {propertyDetail.title}
+                  {propertyDetails.title}
                 </Typography>
 
                 <Stack
@@ -157,7 +156,7 @@ const PropertyDetail = () => {
                     fontSize={14}
                     color="#808191"
                   >
-                    {propertyDetail.location}
+                    {propertyDetails.location}
                   </Typography>
                 </Stack>
               </Box>
@@ -180,7 +179,7 @@ const PropertyDetail = () => {
                     fontWeight={700}
                     color="#475BE8"
                   >
-                    {propertyDetail.price}
+                    {propertyDetails.price}
                   </Typography>
                   <Typography
                     fontSize={14}
@@ -208,7 +207,7 @@ const PropertyDetail = () => {
                 fontSize={14}
                 color="#808191"
               >
-                {propertyDetail.description}
+                {propertyDetails.description}
               </Typography>
             </Stack>
           </Box>
@@ -239,7 +238,7 @@ const PropertyDetail = () => {
             >
               <img
                 src={
-                  propertyDetail.creator.avatar
+                  propertyDetails.creator.avatar
                 }
                 width={90}
                 height={90}
@@ -254,7 +253,7 @@ const PropertyDetail = () => {
                   fontWeight={600}
                   color="#11142d"
                 >
-                  {propertyDetail.creator.name}
+                  {propertyDetails.creator.name}
                 </Typography>
                 <Typography
                   fontSize={18}
@@ -290,7 +289,7 @@ const PropertyDetail = () => {
                 color="#11142D"
               >
                 {
-                  propertyDetail.creator
+                  propertyDetails.creator
                     .allProperties.length
                 }
                 properties
@@ -307,7 +306,7 @@ const PropertyDetail = () => {
               <Link
                 href={
                   isCurrentUser
-                    ? `/properties/edit/${propertyDetail._id}`
+                    ? `/properties/edit/${propertyDetails._id}`
                     : '/login'
                 }
               >
@@ -352,7 +351,7 @@ const PropertyDetail = () => {
                 handleClick={() => {
                   if (isCurrentUser)
                     handleDeleteProperty(
-                      propertyDetail._id
+                      propertyDetails._id ?? ''
                     );
                 }}
               />

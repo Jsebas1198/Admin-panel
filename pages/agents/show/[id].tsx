@@ -2,7 +2,7 @@ import { useOne } from '@refinedev/core';
 import { useRouter } from 'next/router';
 
 import Profile from '@components/Common/Profile';
-import { UserInterface } from '@interfaces/user';
+import { IUser } from '@interfaces/user';
 
 const AgentProfile = () => {
   const router = useRouter();
@@ -14,7 +14,7 @@ const AgentProfile = () => {
   });
 
   const agentProfile =
-    (data?.data as UserInterface) ?? [];
+    (data?.data as IUser) ?? [];
 
   if (isLoading) {
     return <div>Loading...</div>;

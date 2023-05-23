@@ -1,5 +1,9 @@
-import { ColorModeContext } from "@contexts";
-import { DarkModeOutlined, LightModeOutlined } from "@mui/icons-material";
+import { ColorModeContext } from '@contexts';
+import { IUser } from '@interfaces/user';
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+} from '@mui/icons-material';
 import {
   AppBar,
   Avatar,
@@ -7,26 +11,27 @@ import {
   Stack,
   Toolbar,
   Typography,
-} from "@mui/material";
-import { useGetIdentity } from "@refinedev/core";
-import { HamburgerMenu, RefineThemedLayoutV2HeaderProps } from "@refinedev/mui";
-import React, { useContext } from "react";
+} from '@mui/material';
+import { useGetIdentity } from '@refinedev/core';
+import {
+  HamburgerMenu,
+  RefineThemedLayoutV2HeaderProps,
+} from '@refinedev/mui';
+import React, { useContext } from 'react';
 
-type IUser = {
-  id: number;
-  name: string;
-  avatar: string;
-};
-
-export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
-  isSticky = true,
-}) => {
-  const { mode, setMode } = useContext(ColorModeContext);
+export const Header: React.FC<
+  RefineThemedLayoutV2HeaderProps
+> = ({ isSticky = true }) => {
+  const { mode, setMode } = useContext(
+    ColorModeContext
+  );
 
   const { data: user } = useGetIdentity<IUser>();
 
   return (
-    <AppBar position={isSticky ? "sticky" : "relative"}>
+    <AppBar
+      position={isSticky ? 'sticky' : 'relative'}
+    >
       <Toolbar>
         <Stack
           direction="row"
@@ -47,7 +52,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                 setMode();
               }}
             >
-              {mode === "dark" ? <LightModeOutlined /> : <DarkModeOutlined />}
+              {mode === 'dark' ? (
+                <LightModeOutlined />
+              ) : (
+                <DarkModeOutlined />
+              )}
             </IconButton>
 
             {(user?.avatar || user?.name) && (
@@ -61,8 +70,8 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                   <Typography
                     sx={{
                       display: {
-                        xs: "none",
-                        sm: "inline-block",
+                        xs: 'none',
+                        sm: 'inline-block',
                       },
                     }}
                     variant="subtitle2"
@@ -70,7 +79,10 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
                     {user?.name}
                   </Typography>
                 )}
-                <Avatar src={user?.avatar} alt={user?.name} />
+                <Avatar
+                  src={user?.avatar}
+                  alt={user?.name}
+                />
               </Stack>
             )}
           </Stack>
